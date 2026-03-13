@@ -1,0 +1,248 @@
+/* ═══════════════════════════════════════════════════
+   BASE.CSS — Design tokens, reset, tipografia
+   Bescheiben Digital Agency
+═══════════════════════════════════════════════════ */
+
+/* ─── DESIGN TOKENS ─────────────────────────────── */
+:root {
+  /* Cores de marca */
+  --c-purple:     #6B4EFF;
+  --c-purple-d:   #4A32D4;
+  --c-purple-l:   #A58BFF;
+  --c-purple-xl:  #C4B5FD;
+  --c-purple-xs:  #F0EEFF;
+  --c-purple-2xs: #FAF8FF;
+
+  /* Texto */
+  --c-ink:        #111827;
+  --c-ink-2:      #1F2937;
+  --c-gray:       #6B7280;
+  --c-gray-l:     #9CA3AF;
+  --c-gray-xl:    #D1D5DB;
+
+  /* Superfícies */
+  --c-white:      #FFFFFF;
+  --c-bg:         #F9FAFB;
+  --c-dark:       #0C0C18;
+  --c-dark-2:     #141426;
+  --c-dark-3:     #1A1A30;
+
+  /* Bordas */
+  --c-border:     rgba(0,0,0,0.07);
+  --c-border-p:   #E8E4FF;
+
+  /* Gradientes */
+  --g-primary:  linear-gradient(135deg, #6B4EFF, #8B6CFF);
+  --g-deep:     linear-gradient(135deg, #4A32D4, #6B4EFF);
+  --g-dark:     linear-gradient(160deg, #0C0C18 0%, #141426 50%, #0C0C18 100%);
+
+  /* Sombras */
+  --s-sm:    0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --s-md:    0 4px 16px rgba(0,0,0,0.08);
+  --s-lg:    0 12px 40px rgba(0,0,0,0.10);
+  --s-glow:  0 8px 32px rgba(107,78,255,0.24);
+  --s-glow-l:0 16px 48px rgba(107,78,255,0.36);
+
+  /* Tipografia */
+  --font-title:  'Syne', sans-serif;
+  --font-body:   'DM Sans', sans-serif;
+  --font-mono:   'DM Mono', monospace;
+
+  /* Espaçamento base 8px */
+  --sp-1: 0.5rem;   /* 8   */
+  --sp-2: 1rem;     /* 16  */
+  --sp-3: 1.5rem;   /* 24  */
+  --sp-4: 2rem;     /* 32  */
+  --sp-5: 3rem;     /* 48  */
+  --sp-6: 4rem;     /* 64  */
+  --sp-7: 6rem;     /* 96  */
+
+  /* Raios */
+  --r-sm:   6px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-full: 9999px;
+
+  /* Transições */
+  --t-fast: 0.15s ease;
+  --t-base: 0.25s ease;
+  --t-slow: 0.4s cubic-bezier(0.16,1,0.3,1);
+
+  /* Layout */
+  --max-w: 1180px;
+  --nav-h: 64px;
+}
+
+/* ─── RESET ──────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--c-ink);
+  background: var(--c-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg   { display: block; max-width: 100%; }
+a          { color: inherit; text-decoration: none; }
+ul, ol     { list-style: none; }
+button     { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, textarea, select { font-family: inherit; }
+::selection { background: rgba(107,78,255,0.14); color: var(--c-ink); }
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c-border-p); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--c-purple-l); }
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--c-purple);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* ─── TIPOGRAFIA ─────────────────────────────────── */
+h1 {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 4.5vw, 3.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+h3 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+p { line-height: 1.72; }
+
+/* ─── UTILITÁRIOS ────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--sp-4);
+}
+
+/* Gradiente de texto */
+.text-grad {
+  background: var(--g-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-grad-light {
+  background: linear-gradient(135deg, #A58BFF, #C4B5FD);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section label */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-purple);
+  opacity: 0.72;
+  margin-bottom: var(--sp-2);
+}
+.section-label--light { color: var(--c-purple-xl); opacity: 0.85; }
+.section-label::before {
+  content: '';
+  display: block;
+  width: 18px; height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* Section title + desc */
+.section-title {
+  margin-bottom: var(--sp-2);
+  color: var(--c-ink);
+}
+.section-title--light { color: var(--c-white); }
+
+.section-desc {
+  font-size: 1.0625rem;
+  color: var(--c-gray);
+  max-width: 540px;
+  margin-bottom: var(--sp-5);
+}
+.section-desc--light { color: rgba(255,255,255,0.48); }
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity  0.7s cubic-bezier(0.16,1,0.3,1),
+    transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition:
+    opacity  0.75s cubic-bezier(0.16,1,0.3,1),
+    transform 0.75s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.visible { opacity: 1; transform: none; }
+
+/* Stagger delays */
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+.delay-5 { transition-delay: 0.40s; }
+.delay-6 { transition-delay: 0.48s; }
+
+/* ─── KEYFRAMES ──────────────────────────────────── */
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.82); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  from { left: -100%; }
+  to   { left: 220%; }
+}
